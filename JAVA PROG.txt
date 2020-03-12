@@ -1,0 +1,196 @@
+#INTERVIEW Q1
+#TO REVERSE AN ARRAY T[]
+
+#include <stdio.h>
+
+void reverse(int arr[],int s,int e)
+{
+int temp; 
+if (s >= e) 
+return; 
+temp = arr[s];    
+arr[s] = arr[e]; 
+arr[e] = temp; 
+reverse(arr, s+1, e-1);  
+}
+int main()
+{
+int arr[10],size;
+printf("size:");
+scanf("%d",&size); //size of the array
+printf("values:");
+
+for(int i=0;i<size;i++)
+{
+scanf("%d",&arr[i]);
+}
+reverse(arr,0,size-1);
+for(int i=0;i<size;i++)
+printf("%d ",arr[i]);
+return 0;
+}
+
+#END
+#INTERVIEW Q2
+#JAVA program to check whether two strings are anagrams of each other 
+
+import java.util.*; 
+class Main { 
+
+	static boolean anagram(String s1, String s2) 
+	{ 
+		int n1 = s1.length(); 
+		int n2 = s2.length(); 
+		if (n1 != n2) 
+			return false; 
+		char t1[]=s1.toCharArray();
+		char t2[]=s2.toCharArray();
+		Arrays.sort(t1); 
+		Arrays.sort(t2); 
+		for (int i = 0; i < n1; i++) 
+			if (t1[i] != t2[i]) 
+				return false; 
+
+		return true; 
+	} 
+	public static void main(String args[]) 
+	{ 
+	    Scanner s=new Scanner(System.in);
+	    String s1 = s.next();
+	    String s2 = s.next(); 
+	    if (anagram(s1, s2)) 
+			System.out.println("The two strings are" + " anagram of each other"); 
+		else
+			System.out.println("The two strings are not" + " anagram of each other"); 
+	} 
+} 
+
+#END
+
+#Java code to find duplicates in O(n) time 
+import java.util.*;
+class Main 
+{ 
+	void repeat(int arr[], int size) 
+	{ 
+		int i; 
+		System.out.println("The repeating elements are : "); 
+	
+		for (i = 0; i < size; i++)
+		{ 
+			if (arr[ Math.abs(arr[i])] >= 0 && arr[i]<size) 
+				arr[ Math.abs(arr[i])] = -arr[ Math.abs(arr[i])]; 
+			else
+				System.out.print(Math.abs(arr[i]) + " "); 
+		}		 
+	} 
+
+	public static void main(String[] args) 
+	{ 
+		Main duplicate = new Main(); 
+		Scanner s=new Scanner(System.in);
+		int size=s.nextInt();
+		int arr[] = new int[size];
+		for(int i = 0; i < size; i++)
+		{
+		    arr[i] = s.nextInt();
+		}
+ 
+
+		duplicate.repeat(arr, size); 
+	} 
+} 
+#it throws an array index out of bound exception when the element of the array is equal to or greater than the size of the array.
+#end
+
+#INTERVIEW Q5
+#FIND MID ELEMENT IN A LINKED LIST
+import java.util.*;
+
+
+public class Main {
+ 
+ 
+    public static void main(String args[]) {
+  
+      LinkedList linkedList = new LinkedList();
+      LinkedList.Node head = linkedList.head();
+      linkedList.add( new LinkedList.Node("1"));
+      linkedList.add( new LinkedList.Node("2"));
+      linkedList.add( new LinkedList.Node("3"));
+      linkedList.add( new LinkedList.Node("4"));
+   
+      //finding middle element of LinkedList in single pass
+      LinkedList.Node current = head;
+      int length = 0;
+      LinkedList.Node middle = head;
+   
+      while(current.next() != null){
+          length++;
+          if(length%2 ==0){
+              middle = middle.next();
+          }
+          current = current.next();
+      }
+    
+      if(length%2 == 1){
+          middle = middle.next();
+      }
+
+      System.out.println("length of LinkedList: " + length);
+      System.out.println("middle element of LinkedList : " + middle);
+     
+    }
+ 
+}
+
+class LinkedList{
+    private Node head;
+    private Node tail;
+ 
+    public LinkedList(){
+        this.head = new Node("head");
+        tail = head;
+    }
+ 
+    public Node head(){
+        return head;
+    }
+ 
+    public void add(Node node){
+        tail.next = node;
+        tail = node;
+    }
+ 
+    public static class Node{
+        private Node next;
+        private String data;
+
+        public Node(String data){
+            this.data = data;
+        }
+     
+        public String data() {
+            return data;
+        }
+
+        public void setData(String data) {
+            this.data = data;
+        }
+
+        public Node next() {
+            return next;
+        }
+
+        public void setNext(Node next) {
+            this.next = next;
+        }
+     
+        public String toString(){
+            return this.data;
+        }
+    }
+}
+
+
+
